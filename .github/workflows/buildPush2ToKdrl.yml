@@ -15,9 +15,13 @@ jobs:
           JF_URL: ${{ secrets.JF_URL2 }}
           JF_ACCESS_TOKEN: ${{ secrets.JF_ACCESS_TOKEN2 }}
 
+      - name: set env
+        run: echo "NOW=v$(date +'%Y%m%d.%H%M%S')" >> $GITHUB_ENV
+
       - name: Build Tag and push Docker Image
         env:
-          IMAGE_NAME: kyndryl.jfrog.io/kyndryl-transformation-platform-dev-docker-local/jfrog-docker-example-image:${{ github.run_number }}
+          #IMAGE_NAME: kyndryl.jfrog.io/kyndryl-transformation-platform-dev-docker-local/jfrog-docker-example-image:${{ github.run_number }}
+          IMAGE_NAME: kyndryl.jfrog.io/kyndryl-transformation-platform-dev-docker-local/jfrog-docker-example-image:${{ env.NOW }}
           IMAGE_NAME_LATEST: kyndryl.jfrog.io/kyndryl-transformation-platform-dev-docker-local/jfrog-docker-example-image:LATEST
         run: |
           jf docker build -t $IMAGE_NAME .
