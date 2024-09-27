@@ -18,16 +18,24 @@ jobs:
       - name: set env
         run: echo "NOW=v$(date +'%Y%m%d.%H%M%S')" >> $GITHUB_ENV
 
-      - name: Build Tag and push Docker Image
+      - name: Backend - Build Tag and push Docker Image
         env:
-          #IMAGE_NAME: kyndryl.jfrog.io/kyndryl-transformation-platform-dev-docker-local/jfrog-docker-example-image:${{ github.run_number }}
-          IMAGE_NAME: kyndryl.jfrog.io/kyndryl-transformation-platform-dev-docker-local/jfrog-docker-example-image:${{ env.NOW }}
-          IMAGE_NAME_LATEST: kyndryl.jfrog.io/kyndryl-transformation-platform-dev-docker-local/jfrog-docker-example-image:latest
+          IMAGE_NAME: kyndryl.jfrog.io/kyndryl-transformation-platform-dev-docker-local/jfrog-docker-example-backend:${{ env.NOW }}
+          IMAGE_NAME_LATEST: kyndryl.jfrog.io/kyndryl-transformation-platform-dev-docker-local/jfrog-docker-example-backend:latest
         run: |
           jf docker build -t $IMAGE_NAME .
           jf docker tag $IMAGE_NAME $IMAGE_NAME_LATEST
           jf docker push $IMAGE_NAME
           jf docker push $IMAGE_NAME_LATEST
+      - name: Frontend - Build Tag and push Docker Image
+        env:
+          IMAGE_NAME: kyndryl.jfrog.io/kyndryl-transformation-platform-dev-docker-local/jfrog-docker-example-frontend:${{ env.NOW }}
+          IMAGE_NAME_LATEST: kyndryl.jfrog.io/kyndryl-transformation-platform-dev-docker-local/jfrog-docker-example-frontend:latest
+        run: |
+          jf docker build -t $IMAGE_NAME .
+          jf docker tag $IMAGE_NAME $IMAGE_NAME_LATEST
+          jf docker push $IMAGE_NAME
+          jf docker push $IMAGE_NAME_LATEST 
           
       # - name: Publish Build info With JFrog CLI
       #   env:
