@@ -1,6 +1,10 @@
 name: Build and Tag Docker Image to Kdrl
 
-on: [workflow_dispatch]
+# on: [workflow_dispatch]
+on:
+  push:
+    branches:
+    - main
         
 jobs:
   build-and-tag:
