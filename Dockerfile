@@ -4,5 +4,8 @@ FROM python:3-alpine
 # Copy the Python script to the container
 COPY script.py .
 
+RUN ls
+
 # Run the script when the container starts
-CMD ["python", "script.py"]
+#CMD ["python", "script.py;"]
+CMD ["sleep infinity"]
