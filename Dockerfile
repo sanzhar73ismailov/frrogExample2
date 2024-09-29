@@ -5,5 +5,6 @@ FROM python:3-alpine
 COPY script.py .
 
 # Run the script when the container starts
-CMD ["python", "script.py"]
-#CMD ["sleep infinity"]
+#CMD ["python", "script.py"]
+RUN python script.py
+CMD ["/bin/bash"]
