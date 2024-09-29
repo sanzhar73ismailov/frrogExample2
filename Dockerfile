@@ -7,4 +7,4 @@ COPY script.py .
 # Run the script when the container starts
 #CMD ["python", "script.py"]
 RUN python script.py
-CMD ["/bin/bash"]
+CMD ["tail", "-f", "/dev/null"]
