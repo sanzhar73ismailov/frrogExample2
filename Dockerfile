@@ -3,6 +3,7 @@ FROM python:3-alpine
 
 # Copy the Python script to the container
 COPY script.py .
+COPY .env.production .
 
 # Run the script when the container starts
 #CMD ["python", "script.py"]
