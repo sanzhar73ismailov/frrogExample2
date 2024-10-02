@@ -13,6 +13,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Create .env.production file
+        run: |
+         cp .env.production.example .env.production
+         sed 's/host:port_number/13.81.114.23:5003/' .env.production
+
       - name: Setup JFrog CLI
         uses: jfrog/setup-jfrog-cli@v3
         env:
