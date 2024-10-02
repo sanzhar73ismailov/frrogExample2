@@ -17,6 +17,7 @@ jobs:
         run: |
          cp .env.production.example .env.production
          sed 's/host:port_number/13.81.114.23:5003/' .env.production
+         ls -la
 
       - name: Setup JFrog CLI
         uses: jfrog/setup-jfrog-cli@v3
@@ -32,6 +33,7 @@ jobs:
           IMAGE_NAME: kyndryl.jfrog.io/kyndryl-transformation-platform-dev-docker-local/jfrog-docker-example-backend:${{ env.NOW }}
           IMAGE_NAME_LATEST: kyndryl.jfrog.io/kyndryl-transformation-platform-dev-docker-local/jfrog-docker-example-backend:latest
         run: |
+          ls -la
           jf docker build -t $IMAGE_NAME .
           jf docker tag $IMAGE_NAME $IMAGE_NAME_LATEST
           jf docker push $IMAGE_NAME
