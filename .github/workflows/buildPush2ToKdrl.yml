@@ -16,8 +16,10 @@ jobs:
       - name: Create .env.production file
         run: |
          cp .env.production.example .env.production
-         sed 's/host:port_number/13.81.114.23:5003/' .env.production
+         sed 's/host/13.81.114.23/' .env.production
+         sed 's/port_number/5003/' .env.production
          ls -la
+         cat .env.production
 
       - name: Setup JFrog CLI
         uses: jfrog/setup-jfrog-cli@v3
